@@ -1,0 +1,21 @@
+.todo {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 30%;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.text {
+  flex: 3;
+  border: 2px solid blue;
+}
+
+.buttons {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  border: 2px solid red;
+}
