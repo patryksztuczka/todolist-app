@@ -1,24 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./LeftPanel.css";
 
-const LeftPanel = ({ handleTodosToShow }) => {
-  const [active, setActive] = useState();
+const tabs = [
+  {
+    className: "item active",
+    value: "all",
+  },
+  {
+    className: "item",
+    value: "active",
+  },
+  {
+    className: "item",
+    value: "completed",
+  },
+];
 
-  const handleActiveClass = () => {};
+const LeftPanel = ({ handleTodosToShow }) => {
+  const tabsRefs = useRef([]);
+  tabsRefs.current = [];
+
+  const addToRefs = (el) => {
+    if (el && !tabsRefs.current.includes(el)) {
+      tabsRefs.current.push(el);
+    }
+  };
 
   return (
     <div className="left-panel">
       <div className="logo">.todo</div>
       <div className="items">
-        <button className="item active" value="all" onClick={handleTodosToShow}>
-          all
-        </button>
-        <button className="item" value="active" onClick={handleTodosToShow}>
-          active
-        </button>
-        <button className="item" value="completed" onClick={handleTodosToShow}>
-          complete
-        </button>
+        {tabs.map((tab) => (
+          <button key={tab.value} ref={addToRefs} className={tab.className} value={tab.value} onClick={handleTodosToShow}>
+            {tab.value}
+          </button>
+        ))}
       </div>
     </div>
   );

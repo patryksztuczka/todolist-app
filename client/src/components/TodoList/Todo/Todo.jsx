@@ -4,10 +4,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./Todo.css";
 
 const Todo = ({ text, todo, toggleComplete, onDelete }) => {
-  const handleDelete = () => {
-    onDelete();
-  };
-
   return (
     <div className="todo">
       <div className="text">{text}</div>
