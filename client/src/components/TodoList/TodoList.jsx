@@ -50,7 +50,6 @@ const TodoList = () => {
     <div className="container">
       <LeftPanel handleTodosToShow={handleTodosToShow} />
       <div className="todo-list">
-        <TodoForm onSubmit={addTodo} />
         {todosToRender.map((todo) => (
           <Todo
             key={todo.id}
@@ -61,6 +60,7 @@ const TodoList = () => {
           />
         ))}
       </div>
+      <TodoForm onSubmit={addTodo} />
     </div>
   );
 };

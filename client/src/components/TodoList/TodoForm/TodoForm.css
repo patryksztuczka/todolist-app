@@ -1,3 +1,10 @@
+.form-container {
+  display: flex;
+  flex: 3;
+  justify-content: center;
+  background-color: #ddd;
+}
+
 form input {
-  width: 30vw;
+  width: 15vw;
 }
