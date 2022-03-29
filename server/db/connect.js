@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
 
-const connectionString = `mongodb+srv://patryksztuczka:${process.env.DB_PASSWORD}@cluster0.ufylr.mongodb.net/todo-list?retryWrites=true&w=majority`;
+const connectDB = (url) => {
+  mongoose.connect(url);
+};
 
-mongoose.connect(connectionString)
-  .then(() => { console.log("Connected to the database..."); })
-  .catch(err => { console.log(err); });
+module.exports = connectDB;
+
