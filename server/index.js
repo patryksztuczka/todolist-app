@@ -1,15 +1,24 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import "dotenv/config";
+const express = require('express');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 const app = express();
+const todos = require('./routes/todos');
 
-const CONNECTION_URL = `mongodb+srv://patryksztuczka:${process.env.DB_PASSWORD}@cluster0.ufylr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const PORT = process.env.PORT || 5000;
+//middleware
+app.use(express.json());
 
-mongoose.connect(CONNECTION_URL)
-  .then(() => app.listen(PORT, () => console.log(`Server running on port: ${PORT}`)))
+
+//routes
+app.get("/hello", (req, res) => {
+  res.send("todo list app");
+});
+
+app.use("/api/v1/todos", todos);
+
+const connection_url = `mongodb+srv://patryksztuczka:${process.env.DB_PASSWORD}@cluster0.ufylr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const port = process.env.PORT || 3000;
+
+mongoose.connect(connection_url)
+  .then(() => app.listen(port, () => console.log(`Server running on port: ${port}`)))
   .catch(err => console.error(err.message));
-
-app.use(cors());
