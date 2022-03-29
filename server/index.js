@@ -1,6 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
-require('dotenv').config();
+require('./db/connect');
 
 const app = express();
 const todos = require('./routes/todos');
@@ -17,9 +16,6 @@ app.get("/hello", (req, res) => {
 app.use("/api/v1/todos", todos);
 app.use("/api/v1/todos", todos);
 
-const connection_url = `mongodb+srv://patryksztuczka:${process.env.DB_PASSWORD}@cluster0.ufylr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const port = process.env.PORT || 3000;
 
-mongoose.connect(connection_url)
-  .then(() => app.listen(port, () => console.log(`Server running on port: ${port}`)))
-  .catch(err => console.error(err.message));
+app.listen(port, () => console.log(`Server is listening on port: ${port}...`));
