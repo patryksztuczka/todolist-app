@@ -15,6 +15,7 @@ app.get("/hello", (req, res) => {
 });
 
 app.use("/api/v1/todos", todos);
+app.use("/api/v1/todos", todos);
 
 const connection_url = `mongodb+srv://patryksztuczka:${process.env.DB_PASSWORD}@cluster0.ufylr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const port = process.env.PORT || 3000;
