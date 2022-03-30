@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const todos = require('./routes/todos');
 const connectDB = require('./db/connect');
@@ -6,6 +7,7 @@ require('dotenv').config();
 
 //middleware
 app.use(express.json());
+app.use(cors());
 
 //routes
 app.get("/hello", (req, res) => {
