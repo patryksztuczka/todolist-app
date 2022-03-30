@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
 const App = () => {
+  const [todos, setTodos] = useState([]);
+
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/v1/todos");
-      console.log(response);
+      const data = response.data.todos;
+      setTodos(data);
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -16,7 +19,15 @@ const App = () => {
     fetchData();
   }, []);
 
-  return <div className="app">Helloo</div>;
+  console.log(todos);
+
+  return (
+    <div className="app">
+      {todos.map((todo) => (
+        <div key={todo._id}>{todo.name}</div>
+      ))}
+    </div>
+  );
 };
 
 export default App;
